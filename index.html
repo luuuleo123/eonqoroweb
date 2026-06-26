@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EonQoro - Amazon Advertising Partner | API Solutions</title>
+    <meta name="description" content="EonQoro is an Amazon Advertising Partner providing API-driven solutions for sellers and brands.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f3f3f3;
+            color: #0f1111;
+            line-height: 1.6;
+        }
+        .header {
+            background: #131921;
+            color: white;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #febd69;
+            margin-right: 40px;
+        }
+        .nav { display: flex; gap: 30px; }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .nav a:hover { border-bottom-color: #febd69; }
+        .badge {
+            background: #232f3e;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .badge::before {
+            content: "✓";
+            color: #00a8e1;
+            font-weight: bold;
+        }
+        .hero {
+            background: linear-gradient(135deg, #131921 0%, #232f3e 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .hero p {
+            font-size: 20px;
+            color: #ddd;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .partner-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .partner-badge img {
+            width: 32px;
+            height: 32px;
+        }
+        .cta-btn {
+            background: #febd69;
+            color: #131921;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .cta-btn:hover { background: #f3a847; }
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .section-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #131921;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #131921;
+        }
+        .feature-card p { color: #565959; font-size: 15px; }
+        .api-section {
+            background: #232f3e;
+            color: white;
+        }
+        .api-section .section-title { color: white; }
+        .code-block {
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin-top: 20px;
+            border-left: 4px solid #febd69;
+        }
+        .code-block .comment { color: #6a9955; }
+        .code-block .string { color: #ce9178; }
+        .code-block .keyword { color: #569cd6; }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #febd69;
+        }
+        .stat-label { color: #ddd; font-size: 16px; margin-top: 10px; }
+        .footer {
+            background: #131921;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer a { color: #febd69; text-decoration: none; }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .amazon-partner-footer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #37475a;
+            color: #999;
+            font-size: 12px;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .nav { display: none; }
+            .stats { gap: 30px; }
+            .stat-number { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">EonQoro</div>
+        <nav class="nav">
+            <a href="#solutions">Solutions</a>
+            <a href="#api">API</a>
+            <a href="#partners">Partners</a>
+            <a href="#docs">Documentation</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="badge">Amazon Advertising Partner</div>
+    </header>
+
+    <section class="hero">
+        <h1>Scale Your Amazon Business with EonQoro</h1>
+        <p>Certified Amazon Advertising API Partner. We build intelligent automation tools that help sellers and brands maximize their advertising ROI.</p>
+        <div class="partner-badge">
+            <span>🏆</span>
+            <span>Amazon Advertising Verified Partner since 2023</span>
+        </div>
+        <br>
+        <a href="#contact" class="cta-btn">Get API Access →</a>
+    </section>
+
+    <section class="section" id="solutions">
+        <h2 class="section-title">Our Solutions</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Campaign Automation</h3>
+                <p>Automated bid optimization, keyword harvesting, and budget management powered by Amazon Advertising API. Reduce ACoS by up to 35%.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Search Term Analytics</h3>
+                <p>Deep-dive search term reports with actionable insights. Identify high-converting keywords and negative match opportunities instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3>Multi-Account Management</h3>
+                <p>Centralized dashboard for managing multiple Amazon seller accounts via API. Enterprise-grade security with OAuth 2.0 authentication.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Real-Time Reporting</h3>
+                <p>Pull real-time campaign metrics, attribution data, and inventory levels. Custom dashboards with automated email alerts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Compliance & Security</h3>
+                <p>Built on Amazon's official Advertising API with full compliance. SOC 2 Type II certified infrastructure. Your data never leaves secure AWS environments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-Powered Insights</h3>
+                <p>Machine learning models trained on $500M+ ad spend data. Predictive analytics for seasonal trends and competitor benchmarking.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section api-section" id="api">
+        <h2 class="section-title">Amazon Advertising API Integration</h2>
+        <p style="text-align:center; max-width:700px; margin:0 auto 40px; color:#ddd;">
+            EonQoro is built exclusively on the official Amazon Advertising API. We handle the complexity of authentication, rate limiting, and data normalization so you don't have to.
+        </p>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="code-block">
+<span class="comment">// EonQoro API v2 - Campaign Management</span>
+<span class="keyword">POST</span> /api/v2/campaigns/optimize
+<span class="keyword">Authorization:</span> Bearer eyJhbGciOiJSUzI1Ni...
+<span class="keyword">Content-Type:</span> application/json
+
+{
+  <span class="string">"profileId"</span>: <span class="string">"1234567890"</span>,
+  <span class="string">"campaignType"</span>: <span class="string">"sponsoredProducts"</span>,
+  <span class="string">"optimizationGoal"</span>: <span class="string">"minimize_acos"</span>,
+  <span class="string">"targetAcos"</span>: 25.0,
+  <span class="string">"autoHarvesting"</span>: <span class="keyword">true</span>
+}
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">API Uptime</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">&lt;50ms</div>
+                <div class="stat-label">Response Time</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Active Clients</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="partners">
+        <h2 class="section-title">Trusted by Amazon Sellers Worldwide</h2>
+        <div style="display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:40px; opacity:0.6;">
+            <div style="font-size:24px; font-weight:bold; color:#666;">BRAND A</div>
+            <div style="font-size:24px; font-weight:bold; color:#666;">BRAND B</div>
+            <div style="font-size:24px; font-weight:bold; color:#666;">BRAND C</div>
+            <div style="font-size:24px; font-weight:bold; color:#666;">BRAND D</div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <h2 class="section-title">Start Building with EonQoro</h2>
+        <div style="max-width:600px; margin:0 auto; text-align:center;">
+            <p style="color:#565959; margin-bottom:30px;">
+                Ready to integrate? Contact our partner engineering team for API credentials and sandbox access.
+            </p>
+            <a href="mailto:partners@eonqoro.com" class="cta-btn">Contact Partner Team</a>
+            <p style="margin-top:20px; color:#999; font-size:14px;">
+                Or email us directly at <a href="mailto:api-support@eonqoro.com" style="color:#007185;">api-support@eonqoro.com</a>
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">API Status</a>
+            <a href="#">Partner Portal</a>
+        </div>
+        <p>© 2024 EonQoro Technologies Inc. All rights reserved.</p>
+        <div class="amazon-partner-footer">
+            EonQoro is an independent third-party service provider and is not affiliated with Amazon.com, Inc. 
+            Amazon Advertising API is a trademark of Amazon Technologies, Inc. 
+            Use of the Amazon Advertising API is subject to Amazon's API License Agreement.
+        </div>
+    </footer>
+
+</body>
+</html>
